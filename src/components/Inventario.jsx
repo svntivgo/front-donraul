@@ -1,6 +1,7 @@
 import React from 'react'
+import { connect } from "react-redux";
 
-const inventario = () => {
+const Inventario = () => {
   return (
     <>
       <h1>Inventario</h1>
@@ -8,4 +9,12 @@ const inventario = () => {
   );
 }
 
-export default inventario
+const mapStateToProps = (state) => ({
+
+});
+
+const mapDispatchToProps = (dispatch) => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inventario);
