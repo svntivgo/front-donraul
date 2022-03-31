@@ -1,16 +1,17 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <>
       <nav>
-        <ul>
-          <li>Nueva factura</li>
-          <li>Nuevo volante</li>
-          <li>Facturas</li>
-          <li>Inventario</li>
-          <li>Cerrar sesión</li>
-        </ul>
+        <Link to="/facturacion">Nueva factura</Link>
+        <Link to="/inventario">Nuevo volante</Link>
+        <Link to="/">Facturas</Link>
+        <Link to="/">Inventario</Link>
+        <Link to="/">Clientes</Link>
+        <Link to="/">Proveedores</Link>
+        <Link to="/">Cerrar sesión</Link>
       </nav>
     </>
   );
