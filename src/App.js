@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import Facturacion from "./components/Facturacion";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       </form>
       <button>Iniciar sesión con Gmail</button>
       <button>Registrarse</button>
+      <Facturacion/>
     </Fragment>
   );
 }
