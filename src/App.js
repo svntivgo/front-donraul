@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 import Facturacion from "./components/Facturacion";
+import Inventario from "./components/Inventario";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <button>Iniciar sesión con Gmail</button>
       <button>Registrarse</button>
       <Facturacion/>
+      <Inventario/>
     </Fragment>
   );
 }

@@ -4,8 +4,8 @@ const Facturacion = () => {
   return (
     <>
       <h1>Facturacion</h1>
-      <button>Agregar volante</button>
       <h2>Tabla</h2>
+      <button>Facturar venta</button>
     </>
   );
 }
