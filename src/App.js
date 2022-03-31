@@ -6,15 +6,18 @@ import Home from "./components/Home";
 import Facturacion from "./components/Facturacion";
 import Inventario from "./components/Inventario";
 import Navbar from "./components/Navbar";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <Fragment>
-      <Navbar/>
-      <Home/>
-      <Facturacion/>
-      <Inventario/>
-    </Fragment>
+    <BrowserRouter>
+    <Navbar />
+    <Home />
+      <Routes>
+        <Route path="/facturacion" element={<Facturacion />} />
+        <Route path="/inventario" element={<Inventario />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
