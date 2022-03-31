@@ -3,7 +3,7 @@ import React from 'react'
 const Inventario = () => {
   return (
     <>
-      <div>Inventario</div>
+      <h1>Inventario</h1>
       <h2>Tabla</h2>
       <button>Insertar volante</button>
     </>
