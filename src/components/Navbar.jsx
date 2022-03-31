@@ -7,9 +7,9 @@ const Navbar = () => {
       <nav>
         <Link to="/">Inicio</Link>
         <Link to="/facturacion">Nueva factura</Link>
-        <Link to="/inventario">Nuevo volante</Link>
+        <Link to="/volante">Nuevo volante</Link>
         <Link to="/">Facturas</Link>
-        <Link to="/">Inventario</Link>
+        <Link to="/inventario">Inventario</Link>
         <Link to="/">Clientes</Link>
         <Link to="/">Proveedores</Link>
         <Link to="/">Cerrar sesión</Link>
