@@ -1,13 +1,13 @@
 import React from 'react'
 
-const Inventario = () => {
+const Volante = () => {
   return (
     <>
-      <h1>Inventario</h1>
+      <h1>Creación de volante</h1>
       <h2>Tabla</h2>
       <button>Insertar volante</button>
     </>
   );
 }
 
-export default Inventario
+export default Volante
