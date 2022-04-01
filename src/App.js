@@ -10,6 +10,7 @@ import Volante from "./components/Volante";
 import Facturas from './components/Facturas';
 import Inventario from "./components/Inventario";
 import Clientes from "./components/Clientes";
+import Proveedores from "./components/Proveedores";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/facturas" element={<Facturas />} />
           <Route path="/inventario" element={<Inventario />} />
           <Route path="/clientes" element={<Clientes />} />
+          <Route path="/proveedores" element={<Proveedores />} />
         </Routes>
       </BrowserRouter>
     </Provider>

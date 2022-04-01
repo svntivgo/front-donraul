@@ -11,7 +11,7 @@ const Navbar = () => {
         <Link to="/facturas">Facturas</Link>
         <Link to="/inventario">Inventario</Link>
         <Link to="/clientes">Clientes</Link>
-        <Link to="/">Proveedores</Link>
+        <Link to="/proveedores">Proveedores</Link>
         <Link to="/">Cerrar sesión</Link>
       </nav>
     </>
