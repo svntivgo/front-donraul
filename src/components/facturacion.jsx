@@ -39,17 +39,20 @@ const Facturacion = ({inventario, getInventario}) => {
       },
       {
         Header: "",
-        id: "total",
+        id: "botones",
         accessor: (data) => {
           return (
-            <input
-              required
-              type="number"
-              placeholder="Cantidad"
-              min="0"
-              max={data.cantidad}
-              onChange={(e) => verificarCantidad(e.target, data.cantidad)}
-            ></input>
+            <div>
+              <input
+                required
+                type="number"
+                placeholder="Cantidad"
+                min="0"
+                max={data.cantidad}
+                onChange={(e) => verificarCantidad(e.target, data.cantidad)}
+              ></input>
+              <button onClick={() => console.log(data)}>agregar</button>
+            </div>
           );
         },
       },
