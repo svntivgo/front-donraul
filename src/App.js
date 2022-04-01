@@ -20,13 +20,13 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/facturacion" element={<Facturacion />} />
-          <Route path="/volante" element={<Volante />} />
-          <Route path="/facturas" element={<Facturas />} />
-          <Route path="/inventario" element={<Inventario />} />
-          <Route path="/clientes" element={<Clientes />} />
-          <Route path="/proveedores" element={<Proveedores />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/facturacion" element={<Facturacion />} />
+          <Route exact path="/volante" element={<Volante />} />
+          <Route exact path="/facturas" element={<Facturas />} />
+          <Route exact path="/inventario" element={<Inventario />} />
+          <Route exact path="/clientes" element={<Clientes />} />
+          <Route exact path="/proveedores" element={<Proveedores />} />
         </Routes>
       </BrowserRouter>
     </Provider>

@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "TRAER":
+    case "GET_ALL_ELEMENTS":
       return {
         container: action.data
       }
