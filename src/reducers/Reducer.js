@@ -1,19 +1,22 @@
 import { createStore } from "redux";
 
 const initialState = {
-  container: [
-
-  ],
+  container: [],
+  auth: false
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_ALL_ELEMENTS":
       return {
-        container: action.data
-      }
+        container: action.data,
+      };
+    case "SET_AUTH":
+      return {
+        auth: !action.data,
+      };
     default:
-      return state
+      return state;
   }
 };
 

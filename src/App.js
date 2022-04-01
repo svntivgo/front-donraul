@@ -13,6 +13,7 @@ import Clientes from "./components/Clientes";
 import Proveedores from "./components/Proveedores";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import firebaseApp from './firebase/credentials';
 
 function App() {
   return (
