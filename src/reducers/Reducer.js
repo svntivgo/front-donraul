@@ -2,7 +2,8 @@ import { createStore } from "redux";
 
 const initialState = {
   container: [],
-  auth: false
+  auth: false,
+  productos: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,6 +16,13 @@ const reducer = (state = initialState, action) => {
       return {
         auth: !action.data,
       };
+    case "ADD_PRODUCTOS_FACTURA":
+      let productos = state.productos
+      console.log(action.data)
+      return {
+          ...state,
+          productos: action.data
+        }
     default:
       return state;
   }

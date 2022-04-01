@@ -1,9 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { getAll } from "../actions/actions";
+import { getAll, setProductosFactura } from "../actions/actions";
 import Table from "../features/Table";
 
-const Facturacion = ({inventario, getInventario}) => {
+const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura}) => {
+
+  const [factura, setFactura] = useState([])
+
+  function agregarProducto1(producto) {
+    // setFactura((factura) => [...factura, producto]);
+    agregarProducto(producto)
+    console.log(productosFactura)
+  }
+
+  useEffect(() => {
+    console.log(factura)
+
+  }, [factura])
+
 
   function verificarCantidad(input, cantidad) {
     if (input.value > cantidad) {
@@ -16,8 +30,6 @@ const Facturacion = ({inventario, getInventario}) => {
       input.value = ""
     }
   }
-
-
 
   useEffect(() => {
     getInventario();
@@ -51,7 +63,7 @@ const Facturacion = ({inventario, getInventario}) => {
                 max={data.cantidad}
                 onChange={(e) => verificarCantidad(e.target, data.cantidad)}
               ></input>
-              <button onClick={() => console.log(data)}>agregar</button>
+              <button onClick={() => agregarProducto1(data)}>agregar</button>
             </div>
           );
         },
@@ -71,6 +83,7 @@ const Facturacion = ({inventario, getInventario}) => {
 
 const mapStateToProps = (state) => ({
   inventario: state.container,
+  productosFactura: state.productos,
 });
 
 const url = "http://localhost:8080/api/productos";
@@ -79,6 +92,9 @@ const mapDispatchToProps = (dispatch) => ({
   getInventario() {
     getAll(url, dispatch);
   },
+  agregarProducto(producto) {
+    setProductosFactura(producto, dispatch)
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Facturacion);

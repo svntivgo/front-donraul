@@ -10,3 +10,8 @@ export function setAuth(auth, dispatch) {
   const data = auth
   dispatch({type: "SET_AUTH", data})
 }
+
+export function setProductosFactura(producto, dispatch) {
+  const data = producto;
+  dispatch({ type: "ADD_PRODUCTOS_FACTURA", data });
+}
