@@ -25,13 +25,22 @@ const Facturas = ({ facturas, getFacturas }) => {
       {
         Header: "Productos",
         id: "productos",
-        accessor: data => {
+        accessor: (data) => {
           let output = [];
-          data.productos?.map(item => {
-            return output.push(`${item.nombre}(${item.cantidad})x$${item.precio}`);
+          data.productos?.map((item) => {
+            return output.push(
+              `${item.nombre}(${item.cantidad})x$${item.precio}`
+            );
           });
           return output.join(` `);
-        }
+        },
+      },
+      {
+        Header: "Total",
+        id: "total",
+        accessor: (data) => {
+          return `$${data.total}`
+        },
       },
     ],
     []
