@@ -1,14 +1,16 @@
 import { createStore } from "redux";
 
 const initialState = {
-  inventario: [],
+  container: [
+
+  ],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "INVENTARIO":
+    case "TRAER":
       return {
-        inventario: action
+        container: action.data
       }
     default:
       return state
