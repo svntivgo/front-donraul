@@ -86,7 +86,7 @@ const mapStateToProps = (state) => ({
   productosFactura: state.productos,
 });
 
-const url = "http://localhost:8080/api/productos";
+const url = "https://svntivgo-donraul.herokuapp.com/api/productos";
 
 const mapDispatchToProps = (dispatch) => ({
   getInventario() {
