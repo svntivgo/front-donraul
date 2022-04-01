@@ -10,7 +10,7 @@ const Navbar = () => {
         <Link to="/volante">Nuevo volante</Link>
         <Link to="/facturas">Facturas</Link>
         <Link to="/inventario">Inventario</Link>
-        <Link to="/">Clientes</Link>
+        <Link to="/clientes">Clientes</Link>
         <Link to="/">Proveedores</Link>
         <Link to="/">Cerrar sesión</Link>
       </nav>
