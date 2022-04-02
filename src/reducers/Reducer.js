@@ -5,6 +5,9 @@ export const initialState = {
   auth: false,
   factura: [],
   volante: [],
+  proveedor: {},
+  cliente: {},
+  vendedor: {},
 };
 
 export const reducer = (state = initialState, action) => {
