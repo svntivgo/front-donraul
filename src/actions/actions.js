@@ -15,3 +15,8 @@ export function setProductosFactura(producto, dispatch) {
   const data = producto;
   dispatch({ type: "ADD_PRODUCTOS_FACTURA", data });
 }
+
+export function removeProductosFactura(producto, dispatch) {
+  const data = producto;
+  dispatch({ type: "REMOVE_PRODUCTOS_FACTURA", data });
+}

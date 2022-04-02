@@ -1,23 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
-import { getAll, setProductosFactura } from "../actions/actions";
+import { getAll, removeProductosFactura, setProductosFactura } from "../actions/actions";
 import Table from "../features/Table";
 
-const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura}) => {
+const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura, eliminarProducto}) => {
+
+  useEffect(() => {
+    getInventario();
+  }, []);
 
   const data = useSelector(state => {
     return state
   })
-
-  function capturarProducto(producto) {
-    let inputCantidad = document.getElementById(`input-agregar-${producto.nombre}`)
-    let cantidadIngresada = inputCantidad.value
-
-    producto.cantidad = Number(cantidadIngresada)
-    agregarProducto(producto)
-
-    cantidadIngresada = ""
-  }
   console.log(data.productos)
 
   function verificarCantidad(input, cantidad) {
@@ -32,9 +26,15 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
     }
   }
 
-  useEffect(() => {
-    getInventario();
-  }, []);
+  function capturarProducto(producto) {
+    let inputCantidad = document.getElementById(`input-agregar-${producto.nombre}`)
+    let cantidadIngresada = inputCantidad.value
+
+    producto.cantidad = Number(cantidadIngresada)
+    agregarProducto(producto)
+
+    cantidadIngresada = ""
+  }
 
   const columns = React.useMemo(
     () => [
@@ -92,11 +92,11 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
         Header: "",
         id: "botones",
         accessor: (data) => {
-          return (
+          return data?(
             <div>
-              <button onClick={() => capturarProducto(data)}>Eliminar</button>
+              <button onClick={() => eliminarProducto(data)}>Eliminar</button>
             </div>
-          );
+          ):null
         },
       },
     ],
@@ -127,6 +127,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   agregarProducto(producto) {
     setProductosFactura(producto, dispatch)
+  },
+  eliminarProducto(producto) {
+    removeProductosFactura(producto, dispatch)
   }
 });
 

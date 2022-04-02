@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 
-const initialState = {
+export const initialState = {
   container: [],
   auth: false,
   productos: [],
@@ -13,19 +13,26 @@ export const reducer = (state = initialState, action) => {
         ...state,
         container: action.data,
       };
-      break
+      break;
     case "SET_AUTH":
       return {
         auth: !action.data,
       };
-      break
+      break;
     case "ADD_PRODUCTOS_FACTURA":
-      // console.log(action.data)
       return {
         ...state,
-        productos: [...state.productos, action.data]
+        productos: [...state.productos, action.data],
       };
-      break
+      break;
+    case "REMOVE_PRODUCTOS_FACTURA":
+      let filtro = state.productos
+                    .filter((x) => (x.id !== action.data.id))
+      return {
+        ...state,
+        productos: filtro,
+      };
+      break;
     default:
       return state;
   }
