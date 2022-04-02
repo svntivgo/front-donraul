@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect, useSelector } from "react-redux";
 import { getAll, removeProductosFactura, setProductosFactura } from "../actions/actions";
 import Table from "../features/Table";
@@ -6,9 +6,7 @@ import { apiBase } from "../App";
 
 const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura, eliminarProducto}) => {
 
-  useEffect(() => {
-    getInventario();
-  }, []);
+  getInventario();
 
   const data = useSelector(state => {
     return state
