@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import logo from './logo.svg';
-// import { Counter } from './features/counter/Counter';
 import './App.css';
 import store from "./reducers/Reducer";
 import Navbar from "./components/Navbar";
@@ -14,6 +13,8 @@ import Proveedores from "./components/Proveedores";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import firebaseApp from './firebase/credentials';
+
+export const apiBase = "https://svntivgo-donraul.herokuapp.com/api";
 
 function App(props) {
   return (

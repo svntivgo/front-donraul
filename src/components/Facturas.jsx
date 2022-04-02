@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getAll } from "../actions/actions";
+import { apiBase } from "../App";
 import Table from "../features/Table";
 
 const Facturas = ({ facturas, getFacturas }) => {
@@ -58,11 +59,9 @@ const mapStateToProps = (state) => ({
   facturas: state.container,
 });
 
-const url = "http://localhost:8080/api/facturas";
-
 const mapDispatchToProps = (dispatch) => ({
   getFacturas() {
-    getAll(url, dispatch);
+    getAll(apiBase+"/facturas", dispatch);
   },
 });
 

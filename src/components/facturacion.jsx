@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import { getAll, removeProductosFactura, setProductosFactura } from "../actions/actions";
 import Table from "../features/Table";
+import { apiBase } from "../App";
 
 const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura, eliminarProducto}) => {
 
@@ -12,7 +13,6 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
   const data = useSelector(state => {
     return state
   })
-  console.log(data.productos)
 
   function verificarCantidad(input, cantidad) {
     if (input.value > cantidad) {
@@ -27,13 +27,22 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
   }
 
   function capturarProducto(producto) {
-    let inputCantidad = document.getElementById(`input-agregar-${producto.nombre}`)
+    let botonAgregar = document
+        .getElementById(`boton-agregar-${producto.nombre}`)
+
+    let inputCantidad = document
+        .getElementById(`input-agregar-${producto.nombre}`)
+
     let cantidadIngresada = inputCantidad.value
 
-    producto.cantidad = Number(cantidadIngresada)
-    agregarProducto(producto)
-
-    cantidadIngresada = ""
+    if (cantidadIngresada > 0) {
+      producto.cantidad = Number(cantidadIngresada);
+      inputCantidad.value = "";
+      botonAgregar.disabled = true;
+      agregarProducto(producto);
+      return
+    }
+    alert("Ingrese una cantidad correcta")
   }
 
   const columns = React.useMemo(
@@ -65,7 +74,12 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
                 max={data.cantidad}
                 onChange={(e) => verificarCantidad(e.target, data.cantidad)}
               ></input>
-              <button onClick={() => capturarProducto(data)}>agregar</button>
+              <button
+                id={`boton-agregar-${data.nombre}`}
+                onClick={() => capturarProducto(data)}
+              >
+                agregar
+              </button>
             </div>
           );
         },
@@ -119,11 +133,9 @@ const mapStateToProps = (state) => ({
   productosFactura: state.productos,
 });
 
-const url = "https://svntivgo-donraul.herokuapp.com/api/productos";
-
 const mapDispatchToProps = (dispatch) => ({
   getInventario() {
-    getAll(url, dispatch);
+    getAll(apiBase+"/productos", dispatch);
   },
   agregarProducto(producto) {
     setProductosFactura(producto, dispatch)

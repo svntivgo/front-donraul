@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getAll } from "../actions/actions";
+import { apiBase } from "../App";
 import Table from "../features/Table";
 
 const Proveedores = ({ proveedores, getProveedores }) => {
@@ -38,11 +39,9 @@ const mapStateToProps = (state) => ({
   proveedores: state.container,
 });
 
-const url = "http://localhost:8080/api/proveedores";
-
 const mapDispatchToProps = (dispatch) => ({
   getProveedores() {
-    getAll(url, dispatch);
+    getAll(apiBase+"/proveedores", dispatch);
   },
 });
 

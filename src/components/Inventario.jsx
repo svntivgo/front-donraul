@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux";
 import { getAll } from '../actions/actions';
+import { apiBase } from '../App';
 import Table from '../features/Table';
 
 const Inventario = ({inventario, getInventario}) => {
@@ -43,11 +44,9 @@ const mapStateToProps = (state) => ({
   inventario : state.container,
 });
 
-const url = "http://localhost:8080/api/productos";
-
 const mapDispatchToProps = (dispatch) => ({
   getInventario(){
-    getAll(url, dispatch)
+    getAll(apiBase+"/productos", dispatch)
   }
 });
 
