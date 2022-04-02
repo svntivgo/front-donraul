@@ -13,7 +13,7 @@ export const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_ALL_ELEMENTS":
-      state.container = []
+      state.container = [];
       return {
         ...state,
         container: action.data,
@@ -28,23 +28,32 @@ export const reducer = (state = initialState, action) => {
         factura: [...state.factura, action.data],
       };
     case "REMOVE_FACTURA":
-      let filtroFactura = state.factura
-                    .filter((x) => (x.id !== action.data.id))
+      let filtroFactura = state.factura.filter((x) => x.id !== action.data.id);
       return {
         ...state,
         factura: filtroFactura,
       };
-      case "ADD_VOLANTE":
+    case "ADD_VOLANTE":
       return {
         ...state,
         volante: [...state.volante, action.data],
       };
     case "REMOVE_VOLANTE":
-      let filtroVolante = state.volante
-                    .filter((x) => (x.id !== action.data.id))
+      let filtroVolante = state.volante.filter((x) => x.id !== action.data.id);
       return {
         ...state,
         volante: filtroVolante,
+      };
+    case "SET_PROVEEDOR":
+      return {
+        ...state,
+        proveedor: action.data,
+      };
+    case "SENT_VOLANTE":
+      return {
+        ...state,
+        proveedor: {},
+        volante: [],
       };
     default:
       return state;

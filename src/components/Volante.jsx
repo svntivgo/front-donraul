@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import { connect, useSelector } from 'react-redux';
-import { addToVolante, getAll, removeFromVolante } from '../actions/actions';
+import { addToVolante, getAll, postVolante, removeFromVolante, setProveedor } from '../actions/actions';
 import { apiBase } from '../App';
 import Table from '../features/Table';
 
-const Volante = ({getInventario, inventario, agregarProducto, eliminarProducto}) => {
+const Volante = ({getInventario, inventario, agregarProducto, eliminarProducto, getProveedor, enviarVolante}) => {
   useEffect(() => {
     getInventario();
-
   }, [])
 
   const data = useSelector((state) => {
@@ -45,6 +44,21 @@ const Volante = ({getInventario, inventario, agregarProducto, eliminarProducto})
       return;
     }
     alert("Ingrese una cantidad correcta");
+  }
+
+  function capturarProveedor() {
+    let input = document.getElementById('input-proveedor')
+    let identificacionProveedor = input.value
+
+    getProveedor(identificacionProveedor)
+  }
+
+  function capturarVolante() {
+    let input = document.getElementById("input-proveedor");
+    let identificacionProveedor = input.value;
+
+    enviarVolante(identificacionProveedor, data.volante)
+    input.value = ""
   }
 
   const columns = React.useMemo(
@@ -128,7 +142,23 @@ const Volante = ({getInventario, inventario, agregarProducto, eliminarProducto})
       <Table columns={columns} data={inventario} />
       <h1>Volante</h1>
       <Table columns={columnsVolante} data={data.volante} />
-      <button>Guardar volante</button>
+      <div>
+        <input
+          id="input-proveedor"
+          type="number"
+          placeholder="identificacion proveedor"
+        ></input>
+        <button onClick={() => capturarProveedor()}>Buscar proveedor</button>
+        {data.proveedor.nombre ? (
+          <p>
+            Cedula: {data.proveedor.numIdentificacion},
+            Nombre: {data.proveedor.nombre}
+          </p>
+        ) : (
+          <p>Ingrese un numero de cedula válido</p>
+        )}
+      </div>
+      <button onClick={() => capturarVolante()}>Guardar volante</button>
     </>
   );
 }
@@ -140,7 +170,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getInventario() {
-    getAll(apiBase+"/productos", dispatch);
+    getAll(apiBase + "/productos", dispatch);
   },
   agregarProducto(producto) {
     addToVolante(producto, dispatch);
@@ -148,6 +178,16 @@ const mapDispatchToProps = (dispatch) => ({
   eliminarProducto(producto) {
     removeFromVolante(producto, dispatch);
   },
+  getProveedor(identificacion) {
+    setProveedor(apiBase + "/proveedor/?numIdentificacion="+identificacion, dispatch);
+  },
+  enviarVolante(identificacion, productos) {
+    postVolante(
+      `${apiBase}/volante/?numIdentification=${identificacion}`,
+      productos,
+      dispatch
+    );
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Volante);

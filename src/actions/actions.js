@@ -1,9 +1,12 @@
 export function getAll(url, dispatch) {
-  fetch(url)
+  fetch(url, {
+    crossDomain: true,
+    method: "GET",
+  })
     .then((reponse) => reponse.json())
     .then((data) => {
       dispatch({ type: "GET_ALL_ELEMENTS", data });
-    })
+    });
 }
 
 export function setAuth(auth, dispatch) {
@@ -29,4 +32,31 @@ export function addToVolante(producto, dispatch) {
 export function removeFromVolante(producto, dispatch) {
   const data = producto;
   dispatch({ type: "REMOVE_VOLANTE", data });
+}
+
+export function setProveedor(url, dispatch) {
+  fetch(url, {
+    crossDomain:true,
+    method: 'GET',
+  })
+    .then((reponse) => reponse.json())
+    .then((data) => {
+      dispatch({ type: "SET_PROVEEDOR", data });
+    });
+}
+
+export function postVolante(url, productos, dispatch) {
+  fetch(url, {
+    crossDomain: true,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(
+      productos
+    ),
+  })
+    .then((reponse) => reponse.json())
+    .then((data) => {
+      alert("Se envió correctamente")
+      dispatch({ type: "SENT_VOLANTE"});
+    });
 }
