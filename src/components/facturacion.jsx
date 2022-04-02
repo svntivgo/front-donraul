@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { getAll, setProductosFactura } from "../actions/actions";
 import Table from "../features/Table";
 
@@ -7,14 +7,16 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
 
   const [factura, setFactura] = useState([])
 
+  const data = useSelector(state => {
+    return state
+  })
   function agregarProducto1(producto) {
     // setFactura((factura) => [...factura, producto]);
     agregarProducto(producto)
-    console.log(productosFactura)
+    // console.log(data);
   }
-
+  console.log(data.productos)
   useEffect(() => {
-    console.log(factura)
 
   }, [factura])
 

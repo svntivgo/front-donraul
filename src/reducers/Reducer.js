@@ -6,26 +6,33 @@ const initialState = {
   productos: [],
 };
 
-const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_ALL_ELEMENTS":
       return {
+        ...state,
         container: action.data,
       };
+      break
     case "SET_AUTH":
       return {
         auth: !action.data,
       };
+      break
     case "ADD_PRODUCTOS_FACTURA":
-      let productos = state.productos
-      console.log(action.data)
+      // console.log(action.data)
       return {
-          ...state,
-          productos: action.data
-        }
+        ...state,
+        productos: [...state.productos, action.data]
+      };
+      break
     default:
       return state;
   }
 };
 
-export default createStore(reducer);
+export default () => {
+  return {
+    ...createStore(reducer)
+  }
+}

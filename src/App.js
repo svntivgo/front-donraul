@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+// import { Counter } from './features/counter/Counter';
 import './App.css';
 import store from "./reducers/Reducer";
 import Navbar from "./components/Navbar";
@@ -15,9 +15,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import firebaseApp from './firebase/credentials';
 
-function App() {
+function App(props) {
   return (
-    <Provider store={store}>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -30,7 +29,6 @@ function App() {
           <Route exact path="/proveedores" element={<Proveedores />} />
         </Routes>
       </BrowserRouter>
-    </Provider>
   );
 }
 
