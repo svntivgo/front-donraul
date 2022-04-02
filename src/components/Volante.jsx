@@ -140,25 +140,33 @@ const Volante = ({getInventario, inventario, agregarProducto, eliminarProducto, 
     <>
       <h1>Creación de volante</h1>
       <Table columns={columns} data={inventario} />
-      <h1>Volante</h1>
-      <Table columns={columnsVolante} data={data.volante} />
-      <div>
-        <input
-          id="input-proveedor"
-          type="number"
-          placeholder="identificacion proveedor"
-        ></input>
-        <button onClick={() => capturarProveedor()}>Buscar proveedor</button>
-        {data.proveedor.nombre ? (
-          <p>
-            Cedula: {data.proveedor.numIdentificacion},
-            Nombre: {data.proveedor.nombre}
-          </p>
-        ) : (
-          <p>Ingrese un numero de cedula válido</p>
-        )}
-      </div>
-      <button onClick={() => capturarVolante()}>Guardar volante</button>
+      {data.volante.length > 0 ? (
+        <div>
+          <h1>Volante</h1>
+          <Table columns={columnsVolante} data={data.volante} />
+          <div>
+            <input
+              id="input-proveedor"
+              type="number"
+              placeholder="identificacion proveedor"
+            ></input>
+            <button onClick={() => capturarProveedor()}>
+              Buscar proveedor
+            </button>
+            {data.proveedor.nombre ? (
+              <p>
+                Cedula: {data.proveedor.numIdentificacion}, Nombre:{" "}
+                {data.proveedor.nombre}
+              </p>
+            ) : (
+              <p>Ingrese un numero de cedula válido</p>
+            )}
+          </div>
+          <button onClick={() => capturarVolante()}>Guardar volante</button>
+        </div>
+      ) : (
+        <h2>Agregue un producto para comenzar</h2>
+      )}
     </>
   );
 }
