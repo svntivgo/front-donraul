@@ -5,21 +5,20 @@ import Table from "../features/Table";
 
 const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura}) => {
 
-  const [factura, setFactura] = useState([])
-
   const data = useSelector(state => {
     return state
   })
-  function agregarProducto1(producto) {
-    // setFactura((factura) => [...factura, producto]);
+
+  function capturarProducto(producto) {
+    let inputCantidad = document.getElementById(`input-agregar-${producto.nombre}`)
+    let cantidadIngresada = inputCantidad.value
+
+    producto.cantidad = Number(cantidadIngresada)
     agregarProducto(producto)
-    // console.log(data);
+
+    cantidadIngresada = ""
   }
   console.log(data.productos)
-  useEffect(() => {
-
-  }, [factura])
-
 
   function verificarCantidad(input, cantidad) {
     if (input.value > cantidad) {
@@ -58,6 +57,7 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
           return (
             <div>
               <input
+                id={`input-agregar-${data.nombre}`}
                 required
                 type="number"
                 placeholder="Cantidad"
@@ -65,7 +65,36 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
                 max={data.cantidad}
                 onChange={(e) => verificarCantidad(e.target, data.cantidad)}
               ></input>
-              <button onClick={() => agregarProducto1(data)}>agregar</button>
+              <button onClick={() => capturarProducto(data)}>agregar</button>
+            </div>
+          );
+        },
+      },
+    ],
+    []
+  );
+
+  const columnsFactura = React.useMemo(
+    () => [
+      {
+        Header: "Nombre",
+        accessor: "nombre",
+      },
+      {
+        Header: "Precio",
+        accessor: "precio",
+      },
+      {
+        Header: "Cantidad",
+        accessor: "cantidad",
+      },
+      {
+        Header: "",
+        id: "botones",
+        accessor: (data) => {
+          return (
+            <div>
+              <button onClick={() => capturarProducto(data)}>Eliminar</button>
             </div>
           );
         },
@@ -76,8 +105,10 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
 
   return (
     <>
-      <h1>Facturacion</h1>
+      <h1>Lista de productos</h1>
       <Table columns={columns} data={inventario} />
+      <h1>Factura</h1>
+      <Table columns={columnsFactura} data={data.productos} />
       <button>Facturar venta</button>
     </>
   );
