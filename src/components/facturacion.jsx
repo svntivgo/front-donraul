@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
-import { getAll, removeProductosFactura, setProductosFactura } from "../actions/actions";
+import { addToFactura, getAll, removeFromFactura } from "../actions/actions";
 import Table from "../features/Table";
 import { apiBase } from "../App";
 
 const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura, eliminarProducto}) => {
+  useEffect(() => {
+    getInventario();
 
-  getInventario();
+  }, [])
 
   const data = useSelector(state => {
     return state
@@ -26,10 +28,10 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
 
   function capturarProducto(producto) {
     let botonAgregar = document
-        .getElementById(`boton-agregar-${producto.nombre}`)
+        .getElementById(`btn-agregar-${producto.nombre}-factura`)
 
     let inputCantidad = document
-        .getElementById(`input-agregar-${producto.nombre}`)
+        .getElementById(`input-agregar-${producto.nombre}-factura`)
 
     let cantidadIngresada = inputCantidad.value
 
@@ -64,7 +66,7 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
           return (
             <div>
               <input
-                id={`input-agregar-${data.nombre}`}
+                id={`input-agregar-${data.nombre}-factura`}
                 required
                 type="number"
                 placeholder="Cantidad"
@@ -73,7 +75,7 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
                 onChange={(e) => verificarCantidad(e.target, data.cantidad)}
               ></input>
               <button
-                id={`boton-agregar-${data.nombre}`}
+                id={`btn-agregar-${data.nombre}-factura`}
                 onClick={() => capturarProducto(data)}
               >
                 agregar
@@ -120,7 +122,7 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
       <h1>Lista de productos</h1>
       <Table columns={columns} data={inventario} />
       <h1>Factura</h1>
-      <Table columns={columnsFactura} data={data.productos} />
+      <Table columns={columnsFactura} data={data.factura} />
       <button>Facturar venta</button>
     </>
   );
@@ -128,7 +130,7 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
 
 const mapStateToProps = (state) => ({
   inventario: state.container,
-  productosFactura: state.productos,
+  productosFactura: state.factura,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -136,10 +138,10 @@ const mapDispatchToProps = (dispatch) => ({
     getAll(apiBase+"/productos", dispatch);
   },
   agregarProducto(producto) {
-    setProductosFactura(producto, dispatch)
+    addToFactura(producto, dispatch)
   },
   eliminarProducto(producto) {
-    removeProductosFactura(producto, dispatch)
+    removeFromFactura(producto, dispatch)
   }
 });
 
