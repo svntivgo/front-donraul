@@ -24,6 +24,42 @@ export function removeFromFactura(producto, dispatch) {
   dispatch({ type: "REMOVE_FACTURA", data });
 }
 
+export function setCliente(url, dispatch) {
+  fetch(url, {
+    crossDomain: true,
+    method: "GET",
+  })
+    .then((reponse) => reponse.json())
+    .then((data) => {
+      dispatch({ type: "SET_CLIENTE", data });
+    });
+}
+
+export function setVendedor(url, dispatch) {
+  fetch(url, {
+    crossDomain: true,
+    method: "GET",
+  })
+    .then((reponse) => reponse.json())
+    .then((data) => {
+      dispatch({ type: "SET_VENDEDOR", data });
+    });
+}
+
+export function postFactura(url, productos, dispatch) {
+  fetch(url, {
+    crossDomain: true,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(productos),
+  })
+    .then((reponse) => reponse.json())
+    .then((data) => {
+      alert("Se envió correctamente");
+      dispatch({ type: "SENT_FACTURA" });
+    });
+}
+
 export function addToVolante(producto, dispatch) {
   const data = producto;
   dispatch({ type: "ADD_VOLANTE", data });

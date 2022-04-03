@@ -191,7 +191,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   enviarVolante(identificacion, productos) {
     postVolante(
-      `${apiBase}/volante/?numIdentification=${identificacion}`,
+      `${apiBase}/volante/?numIdentificacion=${identificacion}`,
       productos,
       dispatch
     );

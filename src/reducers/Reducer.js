@@ -19,6 +19,7 @@ export const reducer = (state = initialState, action) => {
         container: action.data,
       };
     case "SET_AUTH":
+      console.log(action.data)
       return {
         auth: !action.data,
       };
@@ -32,6 +33,23 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         factura: filtroFactura,
+      };
+    case "SET_CLIENTE":
+      return {
+        ...state,
+        cliente: action.data,
+      };
+    case "SET_VENDEDOR":
+      return {
+        ...state,
+        vendedor: action.data,
+      };
+    case "SENT_FACTURA":
+      return {
+        ...state,
+        cliente: {},
+        vendedor: {},
+        factura: [],
       };
     case "ADD_VOLANTE":
       return {

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
-import { addToFactura, getAll, removeFromFactura } from "../actions/actions";
+import { addToFactura, getAll, postFactura, removeFromFactura, setCliente, setVendedor } from "../actions/actions";
 import Table from "../features/Table";
 import { apiBase } from "../App";
 
-const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura, eliminarProducto}) => {
+const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura, eliminarProducto, getCliente, getVendedor, enviarFactura}) => {
   useEffect(() => {
     getInventario();
 
@@ -43,6 +43,30 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
       return
     }
     alert("Ingrese una cantidad correcta")
+  }
+
+  function capturarCliente() {
+    let inputCliente = document.getElementById("input-cliente");
+    let identificacionCliente = inputCliente.value;
+
+    getCliente(identificacionCliente);
+  }
+
+  function capturarVendedor() {
+    let inputVendedor = document.getElementById("input-vendedor");
+    let identificacionVendedor = inputVendedor.value;
+    getVendedor(identificacionVendedor);
+  }
+
+  function capturarFactura() {
+    let inputCliente = document.getElementById("input-cliente");
+    let identificacionCliente = inputCliente.value;
+    let inputVendedor = document.getElementById("input-vendedor");
+    let identificacionVendedor = inputVendedor.value;
+
+    enviarFactura(identificacionCliente, identificacionVendedor, data.factura);
+    inputCliente.value = "";
+    inputVendedor.value = "";
   }
 
   const columns = React.useMemo(
@@ -121,9 +145,51 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
     <>
       <h1>Lista de productos</h1>
       <Table columns={columns} data={inventario} />
-      <h1>Factura</h1>
-      <Table columns={columnsFactura} data={data.factura} />
-      <button>Facturar venta</button>
+      {data.factura.length > 0 ? (
+        <div>
+          <h1>Factura</h1>
+          <Table columns={columnsFactura} data={data.factura} />
+          <div>
+            <input
+              id="input-cliente"
+              type="number"
+              placeholder="identificacion cliente"
+            ></input>
+            <button onClick={() => capturarCliente()}>
+              Buscar cliente
+            </button>
+            {data.cliente.nombre ? (
+              <p>
+                Cedula: {data.cliente.numIdentificacion}, Nombre:{" "}
+                {data.cliente.nombre}
+              </p>
+            ) : (
+              <p>Ingrese un numero de cedula válido</p>
+            )}
+          </div>
+          <div>
+            <input
+              id="input-vendedor"
+              type="number"
+              placeholder="identificacion vendedor"
+            ></input>
+            <button onClick={() => capturarVendedor()}>
+              Buscar vendedor
+            </button>
+            {data.vendedor.nombre ? (
+              <p>
+                Cedula: {data.vendedor.numIdentificacion}, Nombre:{" "}
+                {data.vendedor.nombre}
+              </p>
+            ) : (
+              <p>Ingrese un numero de cedula válido</p>
+              )}
+          </div>
+          <button onClick={() => capturarFactura()}>Facturar venta</button>
+        </div>
+      ) : (
+        <h2>Agregue un producto para comenzar</h2>
+      )}
     </>
   );
 };
@@ -135,14 +201,29 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getInventario() {
-    getAll(apiBase+"/productos", dispatch);
+    getAll(apiBase + "/productos", dispatch);
   },
   agregarProducto(producto) {
-    addToFactura(producto, dispatch)
+    addToFactura(producto, dispatch);
   },
   eliminarProducto(producto) {
-    removeFromFactura(producto, dispatch)
-  }
+    removeFromFactura(producto, dispatch);
+  },
+  getCliente(identificacion) {
+    setCliente(
+      apiBase + "/cliente/?numIdentificacion=" + identificacion,
+      dispatch
+    );
+  },
+  getVendedor(identificacion) {
+    setVendedor(
+      apiBase + "/vendedor/?numIdentificacion=" + identificacion,
+      dispatch
+    );
+  },
+  enviarFactura(cedulaCliente, cedulaVendedor, productos) {
+    postFactura(`${apiBase}/factura/?cedulaCliente=${cedulaCliente}&cedulaVendedor=${cedulaVendedor}`, productos, dispatch);
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Facturacion);
