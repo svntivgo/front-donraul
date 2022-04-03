@@ -1,5 +1,4 @@
 import { createStore } from "redux";
-
 export const initialState = {
   container: [],
   auth: null,
@@ -80,6 +79,6 @@ export const reducer = (state = initialState, action) => {
 
 export default () => {
   return {
-    ...createStore(reducer)
-  }
-}
+    ...createStore(reducer),
+  };
+};

@@ -1,19 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
-import { setAuth } from "../actions/actions";
 
 const Home = ({ auth, authHandle }) => {
-
   return (
     <>
       <h1>Don Raúl</h1>
       <h2>Aministrador de inventarios y facturación</h2>
       <h3>Inicio de sesión</h3>
-
       <button>Iniciar sesión con Gmail</button>
       <button>Registrarse</button>
     </>
   );
 };
 
-export default Home
+export default Home;

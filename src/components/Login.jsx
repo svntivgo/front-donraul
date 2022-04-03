@@ -1,14 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { setAuth } from "../actions/actions";
-
-function Login({authHandle}) {
-  function submitHandle(event) {
+function Login({ authHandle, auth }) {
+  async function submitHandle(event) {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    authHandle({ email: email, password: password });
+    await authHandle({ email: email, password: password });
   }
+
+  if (auth) return <Navigate to="/"></Navigate>;
 
   return (
     <div>
@@ -35,4 +37,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
-

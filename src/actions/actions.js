@@ -1,7 +1,7 @@
 import { jsPDF } from "jspdf";
 import { facturaPDF } from "../features/facturaPDF";
-import { signin, signup } from "../helpers/auth";
-const doc = new jsPDF('p', 'mm', "a4");
+import { logOut, signin, signup } from "../helpers/auth";
+const doc = new jsPDF("p", "mm", "a4");
 
 export function getAll(url, dispatch) {
   fetch(url, {
@@ -14,13 +14,18 @@ export function getAll(url, dispatch) {
     });
 }
 
-export function setAuth(auth, dispatch) {
-  const data = auth
-  signin(data.email, data.password).then((response) => {
-    let data = response.user
-    dispatch({ type: "SET_AUTH", data })
+export async function setAuth(auth, dispatch) {
+  signin(auth.email, auth.password).then((response) => {
+    let data = response.user;
+    dispatch({ type: "SET_AUTH", data });
   });
+}
 
+export async function unsetAuth(dispatch) {
+  logOut().then((response) => {
+    let data = response;
+    dispatch({ type: "SET_AUTH", data });
+  });
 }
 
 export function addToFactura(producto, dispatch) {
@@ -69,8 +74,6 @@ export function postFactura(url, productos, dispatch) {
       doc.save(`${data.id}.pdf`);
       dispatch({ type: "SENT_FACTURA" });
     });
-
-
 }
 
 export function addToVolante(producto, dispatch) {
@@ -85,8 +88,8 @@ export function removeFromVolante(producto, dispatch) {
 
 export function setProveedor(url, dispatch) {
   fetch(url, {
-    crossDomain:true,
-    method: 'GET',
+    crossDomain: true,
+    method: "GET",
   })
     .then((reponse) => reponse.json())
     .then((data) => {
@@ -99,13 +102,11 @@ export function postVolante(url, productos, dispatch) {
     crossDomain: true,
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(
-      productos
-    ),
+    body: JSON.stringify(productos),
   })
     .then((reponse) => reponse.json())
     .then((data) => {
-      alert("Se envió correctamente")
-      dispatch({ type: "SENT_VOLANTE"});
+      alert("Se envió correctamente");
+      dispatch({ type: "SENT_VOLANTE" });
     });
 }

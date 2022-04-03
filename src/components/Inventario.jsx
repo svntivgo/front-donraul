@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getAll } from '../actions/actions';
-import { apiBase } from '../App';
-import Table from '../features/Table';
+import { getAll } from "../actions/actions";
+import { apiBase } from "../App";
+import Table from "../features/Table";
 
-const Inventario = ({inventario, getInventario}) => {
-
+const Inventario = ({ inventario, getInventario }) => {
   useEffect(() => {
     getInventario();
-  }, [])
+  }, []);
 
   const columns = React.useMemo(
     () => [
@@ -38,16 +37,16 @@ const Inventario = ({inventario, getInventario}) => {
       <Table columns={columns} data={inventario} />
     </>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
-  inventario : state.container,
+  inventario: state.container,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getInventario(){
-    getAll(apiBase+"/productos", dispatch)
-  }
+  getInventario() {
+    getAll(apiBase + "/productos", dispatch);
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inventario);

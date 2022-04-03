@@ -1,13 +1,26 @@
-import React, { useEffect } from 'react'
-import { connect, useSelector } from 'react-redux';
-import { addToVolante, getAll, postVolante, removeFromVolante, setProveedor } from '../actions/actions';
-import { apiBase } from '../App';
-import Table from '../features/Table';
+import React, { useEffect } from "react";
+import { connect, useSelector } from "react-redux";
+import {
+  addToVolante,
+  getAll,
+  postVolante,
+  removeFromVolante,
+  setProveedor,
+} from "../actions/actions";
+import { apiBase } from "../App";
+import Table from "../features/Table";
 
-const Volante = ({getInventario, inventario, agregarProducto, eliminarProducto, getProveedor, enviarVolante}) => {
+const Volante = ({
+  getInventario,
+  inventario,
+  agregarProducto,
+  eliminarProducto,
+  getProveedor,
+  enviarVolante,
+}) => {
   useEffect(() => {
     getInventario();
-  }, [])
+  }, []);
 
   const data = useSelector((state) => {
     return state;
@@ -47,18 +60,18 @@ const Volante = ({getInventario, inventario, agregarProducto, eliminarProducto, 
   }
 
   function capturarProveedor() {
-    let input = document.getElementById('input-proveedor')
-    let identificacionProveedor = input.value
+    let input = document.getElementById("input-proveedor");
+    let identificacionProveedor = input.value;
 
-    getProveedor(identificacionProveedor)
+    getProveedor(identificacionProveedor);
   }
 
   function capturarVolante() {
     let input = document.getElementById("input-proveedor");
     let identificacionProveedor = input.value;
 
-    enviarVolante(identificacionProveedor, data.volante)
-    input.value = ""
+    enviarVolante(identificacionProveedor, data.volante);
+    input.value = "";
   }
 
   const columns = React.useMemo(
@@ -75,8 +88,8 @@ const Volante = ({getInventario, inventario, agregarProducto, eliminarProducto, 
         Header: "Min-Max",
         id: "min-max",
         accessor: (data) => {
-            return `${data.cantidadMinima} - ${data.cantidadMaxima}`
-        }
+          return `${data.cantidadMinima} - ${data.cantidadMaxima}`;
+        },
       },
       {
         Header: "",
@@ -169,7 +182,7 @@ const Volante = ({getInventario, inventario, agregarProducto, eliminarProducto, 
       )}
     </>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   inventario: state.container,
@@ -187,7 +200,10 @@ const mapDispatchToProps = (dispatch) => ({
     removeFromVolante(producto, dispatch);
   },
   getProveedor(identificacion) {
-    setProveedor(apiBase + "/proveedor/?numIdentificacion="+identificacion, dispatch);
+    setProveedor(
+      apiBase + "/proveedor/?numIdentificacion=" + identificacion,
+      dispatch
+    );
   },
   enviarVolante(identificacion, productos) {
     postVolante(
@@ -195,7 +211,7 @@ const mapDispatchToProps = (dispatch) => ({
       productos,
       dispatch
     );
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Volante);

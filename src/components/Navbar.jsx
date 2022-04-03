@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { unsetAuth } from "../actions/actions";
 
-const Navbar = () => {
+const Navbar = ({ authHandle }) => {
   return (
     <>
       <nav>
@@ -12,10 +14,22 @@ const Navbar = () => {
         <Link to="/inventario">Inventario</Link>
         <Link to="/clientes">Clientes</Link>
         <Link to="/proveedores">Proveedores</Link>
-        <Link to="/">Cerrar sesión</Link>
+        <Link onClick={authHandle} to="/login">
+          Cerrar sesión
+        </Link>
       </nav>
     </>
   );
-}
+};
 
-export default Navbar
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  authHandle() {
+    unsetAuth(dispatch);
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

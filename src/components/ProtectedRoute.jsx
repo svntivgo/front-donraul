@@ -1,8 +1,7 @@
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-export function ProtectedRoute({children}) {
-
+export function ProtectedRoute({ children }) {
   const data = useSelector((state) => {
     return state;
   });
@@ -10,5 +9,4 @@ export function ProtectedRoute({children}) {
   if (!data.auth) return <Navigate to="/login"></Navigate>;
 
   return <>{children}</>;
-
 }

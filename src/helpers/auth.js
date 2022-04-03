@@ -4,9 +4,9 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-import {auth} from "../firebase/credentials";
-
+import { auth } from "../firebase/credentials";
 
 export function signup(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -24,4 +24,8 @@ export function signInWithGoogle() {
 export function signInWithGitHub() {
   const provider = new GithubAuthProvider();
   return signInWithPopup(auth, provider);
+}
+
+export function logOut() {
+  return signOut(auth);
 }

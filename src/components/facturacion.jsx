@@ -1,48 +1,65 @@
 import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
-import { addToFactura, getAll, postFactura, removeFromFactura, setCliente, setVendedor } from "../actions/actions";
+import {
+  addToFactura,
+  getAll,
+  postFactura,
+  removeFromFactura,
+  setCliente,
+  setVendedor,
+} from "../actions/actions";
 import Table from "../features/Table";
 import { apiBase } from "../App";
 
-const Facturacion = ({inventario, getInventario, agregarProducto, productosFactura, eliminarProducto, getCliente, getVendedor, enviarFactura}) => {
+const Facturacion = ({
+  inventario,
+  getInventario,
+  agregarProducto,
+  productosFactura,
+  eliminarProducto,
+  getCliente,
+  getVendedor,
+  enviarFactura,
+}) => {
   useEffect(() => {
     getInventario();
+  }, []);
 
-  }, [])
-
-  const data = useSelector(state => {
-    return state
-  })
+  const data = useSelector((state) => {
+    return state;
+  });
 
   function verificarCantidad(input, cantidad) {
     if (input.value > cantidad) {
-      alert("Excede la cantidad de productos")
-      input.value = ""
+      alert("Excede la cantidad de productos");
+      input.value = "";
     }
 
     if (input.value < 0) {
-      alert("Debe ser un valor positivo")
-      input.value = ""
+      alert("Debe ser un valor positivo");
+      input.value = "";
     }
   }
 
   function capturarProducto(producto) {
-    let botonAgregar = document
-        .getElementById(`btn-agregar-${producto.nombre}-factura`)
+    let botonAgregar = document.getElementById(
+      `btn-agregar-${producto.nombre}-factura`
+    );
 
-    let inputCantidad = document
-        .getElementById(`input-agregar-${producto.nombre}-factura`)
+    let inputCantidad = document.getElementById(
+      `input-agregar-${producto.nombre}-factura`
+    );
 
-    let cantidadIngresada = inputCantidad.value
+    let cantidadIngresada = inputCantidad.value;
 
     if (cantidadIngresada > 0) {
       producto.cantidad = Number(cantidadIngresada);
       inputCantidad.value = "";
       botonAgregar.disabled = true;
       agregarProducto(producto);
-      return
+      return;
     }
-    alert("Ingrese una cantidad correcta")
+    alert("Ingrese una cantidad correcta");
   }
 
   function capturarCliente() {
@@ -130,11 +147,11 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
         Header: "",
         id: "botones",
         accessor: (data) => {
-          return data?(
+          return data ? (
             <div>
               <button onClick={() => eliminarProducto(data)}>Eliminar</button>
             </div>
-          ):null
+          ) : null;
         },
       },
     ],
@@ -155,9 +172,7 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
               type="number"
               placeholder="identificacion cliente"
             ></input>
-            <button onClick={() => capturarCliente()}>
-              Buscar cliente
-            </button>
+            <button onClick={() => capturarCliente()}>Buscar cliente</button>
             {data.cliente.nombre ? (
               <p>
                 Cedula: {data.cliente.numIdentificacion}, Nombre:{" "}
@@ -173,9 +188,7 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
               type="number"
               placeholder="identificacion vendedor"
             ></input>
-            <button onClick={() => capturarVendedor()}>
-              Buscar vendedor
-            </button>
+            <button onClick={() => capturarVendedor()}>Buscar vendedor</button>
             {data.vendedor.nombre ? (
               <p>
                 Cedula: {data.vendedor.numIdentificacion}, Nombre:{" "}
@@ -183,7 +196,7 @@ const Facturacion = ({inventario, getInventario, agregarProducto, productosFactu
               </p>
             ) : (
               <p>Ingrese un numero de cedula válido</p>
-              )}
+            )}
           </div>
           <button onClick={() => capturarFactura()}>Facturar venta</button>
         </div>
@@ -222,7 +235,11 @@ const mapDispatchToProps = (dispatch) => ({
     );
   },
   enviarFactura(cedulaCliente, cedulaVendedor, productos) {
-    postFactura(`${apiBase}/factura/?cedulaCliente=${cedulaCliente}&cedulaVendedor=${cedulaVendedor}`, productos, dispatch);
+    postFactura(
+      `${apiBase}/factura/?cedulaCliente=${cedulaCliente}&cedulaVendedor=${cedulaVendedor}`,
+      productos,
+      dispatch
+    );
   },
 });
 

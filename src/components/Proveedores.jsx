@@ -41,7 +41,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getProveedores() {
-    getAll(apiBase+"/proveedores", dispatch);
+    getAll(apiBase + "/proveedores", dispatch);
   },
 });
 

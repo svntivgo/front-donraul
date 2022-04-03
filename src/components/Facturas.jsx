@@ -40,7 +40,7 @@ const Facturas = ({ facturas, getFacturas }) => {
         Header: "Total",
         id: "total",
         accessor: (data) => {
-          return `$${data.total}`
+          return `$${data.total}`;
         },
       },
     ],
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getFacturas() {
-    getAll(apiBase+"/facturas", dispatch);
+    getAll(apiBase + "/facturas", dispatch);
   },
 });
 
