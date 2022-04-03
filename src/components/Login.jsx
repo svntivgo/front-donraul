@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { setAuth } from "../actions/actions";
 function Login({ authHandle, auth }) {
   async function submitHandle(event) {
@@ -10,18 +10,30 @@ function Login({ authHandle, auth }) {
     await authHandle({ email: email, password: password });
   }
 
+  let navigate = useNavigate()
+
   if (auth) return <Navigate to="/"></Navigate>;
 
   return (
     <div>
       <h3>Inicio de sesión</h3>
       <form onSubmit={submitHandle}>
-        <input name="email" id="email" type={"email"}></input>
-        <input name="password" id="password" type={"password"}></input>
+        <input
+          name="email"
+          id="email"
+          type={"email"}
+          placeholder="ejemplo@ejemplo.com"
+        ></input>
+        <input
+          name="password"
+          id="password"
+          type={"password"}
+          placeholder="*******"
+        ></input>
         <button type="submit">Iniciar Sesión</button>
       </form>
       <button>Iniciar sesión con Gmail</button>
-      <button>Registrarse</button>
+      <button onClick={() => navigate("/registrar")}>Registrarse</button>
     </div>
   );
 }

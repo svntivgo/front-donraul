@@ -1,6 +1,6 @@
 import { jsPDF } from "jspdf";
 import { facturaPDF } from "../features/facturaPDF";
-import { logOut, signin, signup } from "../helpers/auth";
+import { logOut, signin } from "../helpers/auth";
 const doc = new jsPDF("p", "mm", "a4");
 
 export function getAll(url, dispatch) {

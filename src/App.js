@@ -11,6 +11,7 @@ import Proveedores from "./components/Proveedores";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Login from "./components/Login";
+import Registrar from "./components/Registrar";
 
 export const apiBase = "https://svntivgo-donraul.herokuapp.com/api";
 
@@ -20,6 +21,7 @@ function App(props) {
       <Navbar />
       <Routes>
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/registrar" element={<Registrar />} />
         <Route
           exact
           path="/"
