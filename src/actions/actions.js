@@ -1,5 +1,6 @@
 import { jsPDF } from "jspdf";
 import { facturaPDF } from "../features/facturaPDF";
+import { signin, signup } from "../helpers/auth";
 const doc = new jsPDF('p', 'mm', "a4");
 
 export function getAll(url, dispatch) {
@@ -15,7 +16,11 @@ export function getAll(url, dispatch) {
 
 export function setAuth(auth, dispatch) {
   const data = auth
-  dispatch({type: "SET_AUTH", data})
+  signin(data.email, data.password).then((response) => {
+    let data = response.user
+    dispatch({ type: "SET_AUTH", data })
+  });
+
 }
 
 export function addToFactura(producto, dispatch) {
@@ -61,7 +66,7 @@ export function postFactura(url, productos, dispatch) {
     .then((data) => {
       alert("Se envió correctamente");
       doc.text(10, 10, facturaPDF(data));
-      doc.save("a4.pdf");
+      doc.save(`${data.id}.pdf`);
       dispatch({ type: "SENT_FACTURA" });
     });
 

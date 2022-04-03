@@ -1,35 +1,90 @@
-import React, { Fragment } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import store from "./reducers/Reducer";
+import React from "react";
+import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Facturacion from "./components/Facturacion";
 import Volante from "./components/Volante";
-import Facturas from './components/Facturas';
+import Facturas from "./components/Facturas";
 import Inventario from "./components/Inventario";
 import Clientes from "./components/Clientes";
 import Proveedores from "./components/Proveedores";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import firebaseApp from './firebase/credentials';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import Login from "./components/Login";
 
 export const apiBase = "https://svntivgo-donraul.herokuapp.com/api";
 
 function App(props) {
   return (
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/facturacion" element={<Facturacion />} />
-          <Route exact path="/volante" element={<Volante />} />
-          <Route exact path="/facturas" element={<Facturas />} />
-          <Route exact path="/inventario" element={<Inventario />} />
-          <Route exact path="/clientes" element={<Clientes />} />
-          <Route exact path="/proveedores" element={<Proveedores />} />
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route exact path="/login" element={<Login />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/facturacion"
+          element={
+            <ProtectedRoute>
+              <Facturacion />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/volante"
+          element={
+            <ProtectedRoute>
+              <Volante />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/facturas"
+          element={
+            <ProtectedRoute>
+              <Facturas />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/inventario"
+          element={
+            <ProtectedRoute>
+              <Inventario />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/clientes"
+          element={
+            <ProtectedRoute>
+              <Clientes />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/proveedores"
+          element={
+            <ProtectedRoute>
+              <Proveedores />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

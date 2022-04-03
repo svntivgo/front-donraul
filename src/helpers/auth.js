@@ -1,14 +1,12 @@
 import {
-  getAuth,
   signInWithPopup,
   GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import firebaseApp from "../firebase/credentials";
+import {auth} from "../firebase/credentials";
 
-const auth = getAuth(firebaseApp);
 
 export function signup(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);

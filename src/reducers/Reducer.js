@@ -2,7 +2,7 @@ import { createStore } from "redux";
 
 export const initialState = {
   container: [],
-  auth: false,
+  auth: null,
   factura: [],
   volante: [],
   proveedor: {},
@@ -19,9 +19,9 @@ export const reducer = (state = initialState, action) => {
         container: action.data,
       };
     case "SET_AUTH":
-      console.log(action.data)
       return {
-        auth: !action.data,
+        ...state,
+        auth: action.data,
       };
     case "ADD_FACTURA":
       return {
