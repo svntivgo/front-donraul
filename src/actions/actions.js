@@ -1,3 +1,7 @@
+import { jsPDF } from "jspdf";
+import { facturaPDF } from "../features/facturaPDF";
+const doc = new jsPDF('p', 'mm', "a4");
+
 export function getAll(url, dispatch) {
   fetch(url, {
     crossDomain: true,
@@ -56,8 +60,12 @@ export function postFactura(url, productos, dispatch) {
     .then((reponse) => reponse.json())
     .then((data) => {
       alert("Se envió correctamente");
+      doc.text(10, 10, facturaPDF(data));
+      doc.save("a4.pdf");
       dispatch({ type: "SENT_FACTURA" });
     });
+
+
 }
 
 export function addToVolante(producto, dispatch) {
