@@ -1,0 +1,33 @@
+.clientes__container {
+  margin-top: 80px;
+  background-color: $blueColor;
+  padding: 30px 10px;
+
+  h1 {
+    color: $limeColor;
+    font-weight: bold;
+  }
+
+  table {
+    background-color: $limeColor;
+    border-radius: 7px;
+    box-shadow: 3px 3px 5px 5px black;
+    margin: 30px 0;
+
+    thead {
+      th {
+        color: $blueColor;
+        padding: 8px 5px;
+        border-bottom: 2px solid $blueColor;
+      }
+    }
+
+    tbody {
+      td {
+        text-align: center;
+        color: $blueColor;
+        padding: 8px 8px;
+      }
+    }
+  }
+}

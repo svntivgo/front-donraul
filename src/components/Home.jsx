@@ -1,4 +1,4 @@
-import { FaAddressBook, FaTruckLoading,FaPlusCircle } from "react-icons/fa";
+import { FaAddressBook, FaTruckLoading, FaPlusCircle } from "react-icons/fa";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +21,6 @@ const Home = ({ auth, authHandle }) => {
         <FaTruckLoading />
       </div>
       <div className="home__card clientes crear">
-        <i class="fab fa-people-group"></i>
         <p>AGREGAR CLIENTES</p>
         <FaAddressBook />
         <FaPlusCircle />

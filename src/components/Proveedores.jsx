@@ -28,10 +28,10 @@ const Proveedores = ({ proveedores, getProveedores }) => {
   );
 
   return (
-    <>
+    <div className="proveedores__container">
       <h1>Proveedores</h1>
       <Table columns={columns} data={proveedores} />
-    </>
+    </div>
   );
 };
 

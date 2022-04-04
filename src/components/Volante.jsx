@@ -96,17 +96,19 @@ const Volante = ({
         id: "botones",
         accessor: (data) => {
           return (
-            <div>
+            <div className="volante__cell inventario">
               <input
+                className="volante__input agregar"
                 id={`input-agregar-${data.nombre}-volante`}
                 required
                 type="number"
-                placeholder="Cantidad"
+                placeholder="123"
                 min="0"
                 max={data.cantidad}
                 onChange={(e) => verificarCantidad(e.target, data.cantidad)}
               ></input>
               <button
+                className="volante__button agregar"
                 id={`btn-agregar-${data.nombre}-volante`}
                 onClick={() => capturarProducto(data)}
               >
@@ -139,8 +141,13 @@ const Volante = ({
         id: "botones",
         accessor: (data) => {
           return data ? (
-            <div>
-              <button onClick={() => eliminarProducto(data)}>Eliminar</button>
+            <div className="volante__cell">
+              <button
+                className="volante__button eliminar"
+                onClick={() => eliminarProducto(data)}
+              >
+                Eliminar
+              </button>
             </div>
           ) : null;
         },
@@ -150,7 +157,7 @@ const Volante = ({
   );
 
   return (
-    <>
+    <div className="volante__container">
       <h1>Creación de volante</h1>
       <Table columns={columns} data={inventario} />
       {data.volante.length > 0 ? (
@@ -160,10 +167,14 @@ const Volante = ({
           <div>
             <input
               id="input-proveedor"
+              className="volante__input proveedor"
               type="number"
               placeholder="identificacion proveedor"
             ></input>
-            <button onClick={() => capturarProveedor()}>
+            <button
+              className="volante__button cliente"
+              onClick={() => capturarProveedor()}
+            >
               Buscar proveedor
             </button>
             {data.proveedor.nombre ? (
@@ -175,12 +186,17 @@ const Volante = ({
               <p>Ingrese un numero de cedula válido</p>
             )}
           </div>
-          <button onClick={() => capturarVolante()}>Guardar volante</button>
+          <button
+            className="volante__button volante"
+            onClick={() => capturarVolante()}
+          >
+            Guardar volante
+          </button>
         </div>
       ) : (
         <h2>Agregue un producto para comenzar</h2>
       )}
-    </>
+    </div>
   );
 };
 

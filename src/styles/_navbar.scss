@@ -1,0 +1,46 @@
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: $limeColor;
+  position: fixed;
+  top: 0;
+  box-shadow: 0px 5px 5px 5px black;
+  h1 {
+    color: $greenColor;
+    cursor: pointer;
+  }
+  .navbar__menu-button {
+    margin-right: 40px;
+    border: none;
+    background-color: transparent;
+    color: $blueColor;
+    cursor: pointer;
+    z-index: 1;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .navbar__menu {
+    width: 50vw;
+    height: 100vh;
+    padding-left: 20px;
+    padding-top: 20px;
+    position: fixed;
+    right: -60vw;
+    top: 0;
+    background-color: $greenColor;
+    box-shadow: -3px 0px 10px 2px black;
+    transition:cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.5s;
+    &.--expanded{
+      right: 0vw;
+    }
+    a{
+      display: block;
+      width: 300px;
+      padding: 10px;
+      color: $limeColor;
+      font-size: 24px;
+    }
+  }
+}

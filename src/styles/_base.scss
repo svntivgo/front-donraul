@@ -20,22 +20,22 @@ h4,
 h5,
 h6 {
   font-family: 'Montserrat';
-  // color: $blueColor;
+  color: $blueColor;
 }
 
 p {
   font-family: 'Roboto';
-  // color: $blueColor;
+  color: $blueColor;
 }
 
 a {
   font-family: 'Montserrat';
 
   &:hover {
-    text-decoration: 2px underline black;
+    text-decoration: 2px underline $limeColor;
   }
 
   &:active {
-    // color: $springColor;
+    color: $springColor;
   }
 }

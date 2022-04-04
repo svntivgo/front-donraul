@@ -28,10 +28,10 @@ const Clientes = ({ clientes, getClientes }) => {
   );
 
   return (
-    <>
+    <div className="clientes__container">
       <h1>Clientes</h1>
       <Table columns={columns} data={clientes} />
-    </>
+    </div>
   );
 };
 

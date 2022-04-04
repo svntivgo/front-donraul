@@ -105,17 +105,19 @@ const Facturacion = ({
         id: "botones",
         accessor: (data) => {
           return (
-            <div>
+            <div className="facturacion__cell inventario">
               <input
+                className="facturacion__input agregar"
                 id={`input-agregar-${data.nombre}-factura`}
                 required
                 type="number"
-                placeholder="Cantidad"
+                placeholder="123"
                 min="0"
                 max={data.cantidad}
                 onChange={(e) => verificarCantidad(e.target, data.cantidad)}
               ></input>
               <button
+                className="facturacion__button agregar"
                 id={`btn-agregar-${data.nombre}-factura`}
                 onClick={() => capturarProducto(data)}
               >
@@ -148,8 +150,8 @@ const Facturacion = ({
         id: "botones",
         accessor: (data) => {
           return data ? (
-            <div>
-              <button onClick={() => eliminarProducto(data)}>Eliminar</button>
+            <div className="facturacion__cell">
+              <button className="facturacion__button eliminar" onClick={() => eliminarProducto(data)}>Eliminar</button>
             </div>
           ) : null;
         },
@@ -159,7 +161,7 @@ const Facturacion = ({
   );
 
   return (
-    <>
+    <div className="facturacion__container">
       <h1>Lista de productos</h1>
       <Table columns={columns} data={inventario} />
       {data.factura.length > 0 ? (
@@ -169,10 +171,11 @@ const Facturacion = ({
           <div>
             <input
               id="input-cliente"
+              className="facturacion__input cliente"
               type="number"
               placeholder="identificacion cliente"
             ></input>
-            <button onClick={() => capturarCliente()}>Buscar cliente</button>
+            <button className="facturacion__button cliente" onClick={() => capturarCliente()}>Buscar cliente</button>
             {data.cliente.nombre ? (
               <p>
                 Cedula: {data.cliente.numIdentificacion}, Nombre:{" "}
@@ -184,11 +187,12 @@ const Facturacion = ({
           </div>
           <div>
             <input
+              className="facturacion__input vendedor"
               id="input-vendedor"
               type="number"
               placeholder="identificacion vendedor"
             ></input>
-            <button onClick={() => capturarVendedor()}>Buscar vendedor</button>
+            <button className="facturacion__button vendedor" onClick={() => capturarVendedor()}>Buscar vendedor</button>
             {data.vendedor.nombre ? (
               <p>
                 Cedula: {data.vendedor.numIdentificacion}, Nombre:{" "}
@@ -198,12 +202,12 @@ const Facturacion = ({
               <p>Ingrese un numero de cedula válido</p>
             )}
           </div>
-          <button onClick={() => capturarFactura()}>Facturar venta</button>
+          <button className="facturacion__button facturar" onClick={() => capturarFactura()}>Facturar venta</button>
         </div>
       ) : (
         <h2>Agregue un producto para comenzar</h2>
       )}
-    </>
+    </div>
   );
 };
 

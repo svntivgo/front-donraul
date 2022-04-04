@@ -12,6 +12,10 @@ const Facturas = ({ facturas, getFacturas }) => {
   const columns = React.useMemo(
     () => [
       {
+        Header: "Id",
+        accessor: "id"
+      },
+      {
         Header: "Fecha",
         accessor: "fecha",
       },
@@ -48,10 +52,10 @@ const Facturas = ({ facturas, getFacturas }) => {
   );
 
   return (
-    <>
+    <div className="facturas__container">
       <h1>Facturas</h1>
       <Table columns={columns} data={facturas} />
-    </>
+    </div>
   );
 };
 
