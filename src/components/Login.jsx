@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import { setAuth } from "../actions/actions";
-function Login({ authHandle, auth }) {
+import { githubSignin, gmailSignin, setAuth } from "../actions/actions";
+function Login({ authHandle, gmailSigninHandle, githubSigninHandle, auth }) {
   async function submitHandle(event) {
     event.preventDefault();
     const email = event.target.email.value;
@@ -32,7 +32,12 @@ function Login({ authHandle, auth }) {
         ></input>
         <button type="submit">Iniciar Sesión</button>
       </form>
-      <button>Iniciar sesión con Gmail</button>
+      <button onClick={() => gmailSigninHandle()}>
+        Iniciar sesión con Gmail
+      </button>
+      <button onClick={() => githubSigninHandle()}>
+        Iniciar sesión con GitHub
+      </button>
       <button onClick={() => navigate("/registrar")}>Registrarse</button>
     </div>
   );
@@ -45,6 +50,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   authHandle(auth) {
     setAuth(auth, dispatch);
+  },
+  gmailSigninHandle() {
+    gmailSignin(dispatch);
+  },
+  githubSigninHandle() {
+    githubSignin(dispatch);
   },
 });
 
