@@ -19,18 +19,21 @@ const CrearProveedor = ({ enviarProveedor }) => {
       <h1>Crear proveedor</h1>
       <form onSubmit={(e) => capturarProveedor(e)}>
         <input
+          required
           name="nombre"
           id="nombre"
           type="text"
           placeholder="nombre"
         ></input>
         <input
+          required
           name="cedula"
           id="cedula"
           type="number"
           placeholder="cedula"
         ></input>
         <input
+          required
           name="celular"
           id="celular"
           type="number"

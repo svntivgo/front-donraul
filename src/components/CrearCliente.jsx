@@ -19,18 +19,21 @@ const CrearCliente = ({enviarCliente}) => {
       <h1>Crear cliente</h1>
       <form onSubmit={(e) => capturarCliente(e)}>
         <input
+          required
           name="nombre"
           id="nombre"
           type="text"
           placeholder="nombre"
         ></input>
         <input
+          required
           name="cedula"
           id="cedula"
           type="number"
           placeholder="cedula"
         ></input>
         <input
+          required
           name="celular"
           id="celular"
           type="number"
