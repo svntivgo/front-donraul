@@ -12,6 +12,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Login from "./components/Login";
 import Registrar from "./components/Registrar";
+import CrearCliente from "./components/CrearCliente";
+import CrearProveedor from "./components/CrearProveedor";
 
 export const apiBase = "https://svntivgo-donraul.herokuapp.com/api";
 
@@ -78,10 +80,28 @@ function App(props) {
         />
         <Route
           exact
+          path="/crear-cliente"
+          element={
+            <ProtectedRoute>
+              <CrearCliente />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
           path="/proveedores"
           element={
             <ProtectedRoute>
               <Proveedores />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/crear-proveedor"
+          element={
+            <ProtectedRoute>
+              <CrearProveedor />
             </ProtectedRoute>
           }
         />

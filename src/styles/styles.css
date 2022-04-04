@@ -105,7 +105,7 @@ a:active {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 50px;
+  margin-top: 80px;
   background-color: #042940;
 }
 
@@ -375,5 +375,41 @@ a:active {
   text-align: center;
   color: #042940;
   padding: 8px 8px;
+}
+
+.crear__container {
+  margin-top: 100px;
+  padding: 30px;
+  background-color: #042940;
+}
+
+.crear__container h1 {
+  color: #DBF227;
+  font-weight: bold;
+}
+
+.crear__container form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.crear__container form input {
+  width: 300px;
+  margin: 20px;
+  padding-left: 10px;
+}
+
+.crear__container form button {
+  width: 300px;
+  border: none;
+  background-color: #DBF227;
 }
 /*# sourceMappingURL=styles.css.map */

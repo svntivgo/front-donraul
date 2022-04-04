@@ -129,3 +129,29 @@ export function postVolante(url, productos, dispatch) {
       dispatch({ type: "SENT_VOLANTE" });
     });
 }
+
+export function postCliente(url, cliente, dispatch) {
+  fetch(url, {
+    crossDomain: true,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(cliente),
+  })
+    .then((reponse) => reponse.json())
+    .then((data) => {
+      alert("Se envió correctamente");
+    });
+}
+
+export function postProveedor(url, proveedor, dispatch) {
+  fetch(url, {
+    crossDomain: true,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(proveedor),
+  })
+    .then((reponse) => reponse.json())
+    .then((data) => {
+      alert("Se envió correctamente");
+    });
+}

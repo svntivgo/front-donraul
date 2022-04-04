@@ -1,0 +1,24 @@
+.crear__container {
+  margin-top: 100px;
+  padding: 30px;
+  background-color: $blueColor;
+  h1 {
+    color: $limeColor;
+    font-weight: bold;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input {
+      width: 300px;
+      margin: 20px;
+      padding-left: 10px;
+    }
+    button {
+      width: 300px;
+      border: none;
+      background-color: $limeColor;
+    }
+  }
+}

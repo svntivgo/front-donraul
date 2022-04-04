@@ -20,12 +20,18 @@ const Home = ({ auth, authHandle }) => {
         <p>PROVEEDORES</p>
         <FaTruckLoading />
       </div>
-      <div className="home__card clientes crear">
+      <div
+        className="home__card clientes crear"
+        onClick={() => navigate("/crear-cliente")}
+      >
         <p>AGREGAR CLIENTES</p>
         <FaAddressBook />
         <FaPlusCircle />
       </div>
-      <div className="home__card proveedores crear">
+      <div
+        className="home__card proveedores crear"
+        onClick={() => navigate("/crear-proveedor")}
+      >
         <p>AGREGAR PROVEEDORES</p>
         <FaTruckLoading />
         <FaPlusCircle />
