@@ -32,10 +32,10 @@ const Inventario = ({ inventario, getInventario }) => {
   );
 
   return (
-    <>
+    <div className="inventario__container">
       <h1>Inventario</h1>
       <Table columns={columns} data={inventario} />
-    </>
+    </div>
   );
 };
 

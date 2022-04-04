@@ -26,12 +26,7 @@ const Volante = ({
     return state;
   });
 
-  function verificarCantidad(input, cantidad) {
-    if (input.value > cantidad) {
-      alert("Excede la cantidad de productos");
-      input.value = "";
-    }
-
+  function verificarCantidad(input) {
     if (input.value < 0) {
       alert("Debe ser un valor positivo");
       input.value = "";
@@ -105,7 +100,7 @@ const Volante = ({
                 placeholder="123"
                 min="0"
                 max={data.cantidad}
-                onChange={(e) => verificarCantidad(e.target, data.cantidad)}
+                onChange={(e) => verificarCantidad(e.target)}
               ></input>
               <button
                 className="volante__button agregar"
