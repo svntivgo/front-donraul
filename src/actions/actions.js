@@ -1,6 +1,11 @@
 import { jsPDF } from "jspdf";
 import { facturaPDF } from "../features/facturaPDF";
-import { logOut, signin, signInWithGitHub, signInWithGoogle } from "../helpers/auth";
+import {
+  logOut,
+  signin,
+  signInWithGitHub,
+  signInWithGoogle,
+} from "../helpers/auth";
 const doc = new jsPDF("p", "mm", "a4");
 
 export function getAll(url, dispatch) {
@@ -16,7 +21,6 @@ export function getAll(url, dispatch) {
 
 export async function setAuth(auth, dispatch) {
   signin(auth.email, auth.password).then((response) => {
-    console.log(response)
     let data = response.user;
     dispatch({ type: "SET_AUTH", data });
   });

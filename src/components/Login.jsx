@@ -7,10 +7,12 @@ function Login({ authHandle, gmailSigninHandle, githubSigninHandle, auth }) {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    await authHandle({ email: email, password: password });
+    password.length >= 6
+      ? await authHandle({ email: email, password: password })
+      : alert("la contraseña debe ser mayor a 6 caracteres");
   }
 
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   if (auth) return <Navigate to="/"></Navigate>;
 
@@ -19,12 +21,14 @@ function Login({ authHandle, gmailSigninHandle, githubSigninHandle, auth }) {
       <h3>Inicio de sesión</h3>
       <form onSubmit={submitHandle}>
         <input
+          required
           name="email"
           id="email"
           type={"email"}
           placeholder="ejemplo@ejemplo.com"
         ></input>
         <input
+          required
           name="password"
           id="password"
           type={"password"}
