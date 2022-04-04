@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { unsetAuth } from "../actions/actions";
 
-const Navbar = ({ authHandle }) => {
+const Navbar = ({ authHandle, auth }) => {
+
+  if (!auth) return <></>;
+
   return (
     <>
       <nav>

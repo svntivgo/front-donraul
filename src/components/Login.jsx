@@ -17,33 +17,76 @@ function Login({ authHandle, gmailSigninHandle, githubSigninHandle, auth }) {
   if (auth) return <Navigate to="/"></Navigate>;
 
   return (
-    <div>
-      <h3>Inicio de sesión</h3>
-      <form onSubmit={submitHandle}>
-        <input
-          required
-          name="email"
-          id="email"
-          type={"email"}
-          placeholder="ejemplo@ejemplo.com"
-        ></input>
-        <input
-          required
-          name="password"
-          id="password"
-          type={"password"}
-          placeholder="*******"
-        ></input>
-        <button type="submit">Iniciar Sesión</button>
-      </form>
-      <button onClick={() => gmailSigninHandle()}>
-        Iniciar sesión con Gmail
-      </button>
-      <button onClick={() => githubSigninHandle()}>
-        Iniciar sesión con GitHub
-      </button>
-      <button onClick={() => navigate("/registrar")}>Registrarse</button>
-    </div>
+    <section
+      class="vh-100"
+      style={{ height: "100vh", backgroundColor: "#508bfc" }}
+    >
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style={{ borderRadius: "1rem" }}>
+              <div class="card-body p-5 text-center">
+                <form className="login__formulario" onSubmit={submitHandle}>
+                  <div className="form-outline mb-4">
+                    <input
+                      className="login__email form-control"
+                      required
+                      name="email"
+                      id="email"
+                      type={"email"}
+                      placeholder="correo electrónico"
+                    ></input>
+                    <label className="form-label" for="email"></label>
+                  </div>
+                  <div className="form-outline mb-4">
+                    <input
+                      className="login__password form-control"
+                      required
+                      name="password"
+                      id="password"
+                      type={"password"}
+                      placeholder="contraseña"
+                    ></input>
+                    <label class="form-label" for="password"></label>
+                  </div>
+                  <button
+                    className="login__boton iniciar-sesion btn btn-primary btn-block mb-4"
+                    type="submit"
+                  >
+                    Iniciar Sesión
+                  </button>
+                </form>
+                <div className="text-center">
+                  <p>
+                    ¿Aun no está registrado?{" "}
+                    <a
+                      className="login_boton registrarse"
+                      onClick={() => navigate("/registrar")}
+                      href="/registrar#"
+                    >
+                      Registrarse
+                    </a>
+                  </p>
+                  <p>o inicia sesión con:</p>
+                  <button
+                    className="login__boton iniciar-gmail btn btn-link btn-floating mx-1"
+                    onClick={() => gmailSigninHandle()}
+                  >
+                    <i class="fab fa-google"></i>
+                  </button>
+                  <button
+                    className="login__boton iniciar-github btn btn-link btn-floating mx-1"
+                    onClick={() => githubSigninHandle()}
+                  >
+                    <i class="fab fa-github"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
