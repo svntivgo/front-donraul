@@ -1,7 +1,7 @@
 import { createStore } from "redux";
 export const initialState = {
   container: [],
-  auth: null,
+  auth: {},
   factura: [],
   volante: [],
   proveedor: {},
